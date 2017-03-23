@@ -1,0 +1,298 @@
+<resources>
+    <string name="app_name">WineSpray</string>
+
+    <string name="_placeholder_">loading...</string>
+
+    <!--Actions-->
+    <string name="action_settings">Settings</string>
+    <string name="action_add">Add</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_save">Save</string>
+    <string name="action_record">Record GPS</string>
+    <string name="action_reset_gps">Reset GPS</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_clear">Clear</string>
+    <string name="action_done">Done</string>
+    <string name="action_open">Open</string>
+
+    <!--Activities-->
+    <string name="title_activity_splash_screen" translatable="false">SplashScreenActivity</string>
+    <string name="title_activity_acre_list">Acres</string>
+    <string name="title_activity_acre_detail">New acre</string>
+    <string name="title_activity_parcel_list">Parcels</string>
+    <string name="title_activity_parcel_detail">New parcel</string>
+    <string name="title_activity_grape_list">Grapes</string>
+    <string name="title_activity_grape_detail">New grape</string>
+    <string name="title_activity_district_list">Districts</string>
+    <string name="title_activity_test" translatable="false">TestActivity</string>
+    <string name="title_activity_session_detail">Session details</string>
+    <string name="title_activity_session_active">New session</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_run_active">Active run</string>
+
+    <!--Fragments-->
+    <string name="title_fragment_map">Map</string>
+    <string name="title_fragment_session_list">Sessions</string>
+    <string name="title_fragment_note_list">Geo-Notes</string>
+    <string name="title_fragment_profile">Profile</string>
+
+    <!--Dialogs-->
+    <string name="dialog_confirm">Confirm</string>
+    <string name="dialog_ok" translatable="false">OK</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_neutral">More</string>
+    <string name="dialog_agree">Agree</string>
+    <string name="dialog_disagree">Disagree</string>
+    <string name="dialog_delete">Delete</string>
+    <string name="dialog_save">Save</string>
+    <string name="dialog_open">Open</string>
+
+    <string name="dialog_title_delete">Delete</string>
+    <string name="dialog_text_delete">This element will be deleted.</string>
+
+    <string name="dialog_title_message">Note</string>
+
+    <!--ProfileItems-->
+    <string name="profile_acres">Acres</string>
+    <string name="profile_parcels">Parcels</string>
+    <string name="profile_grapes">Grapes</string>
+    <string name="profile_sprays">Sprays</string>
+    <string name="profile_districts">Districts</string>
+    <string name="profile_about">About &amp; Contact</string>
+
+    <!--Model-->
+    <string name="acre">Acre</string>
+    <string name="unknown">Unknown</string>
+    <string name="parcel">Parcel</string>
+    <string name="district">District</string>
+    <string name="company">Company</string>
+    <string name="number">Number</string>
+    <string name="region">Region</string>
+    <string name="zone">Zone</string>
+    <string name="grosslage">Grosslage</string>
+    <string name="einzellage">Einzellage</string>
+    <string name="datapoint">Datapoint</string>
+    <string name="area">Area</string>
+    <string name="area_useful">Floor space</string>
+    <string name="grape">Grape</string>
+    <string name="grape_white">White</string>
+    <string name="grape_red">Red</string>
+    <string name="sensor">Sensor</string>
+    <string name="purpose">Purpose</string>
+    <string name="unitOut">Unit</string>
+    <string name="run">Run</string>
+    <string name="note">Geo-Note</string>
+    <string name="runconfig">Configuration</string>
+    <string name="fall">Fall</string>
+    <string name="details">Details</string>
+
+    <!--Session-->
+    <string name="active">Active</string>
+    <string name="neww">New</string>
+    <string name="stop">Stop</string>
+    <string name="pause">Pause</string>
+    <string name="start">Start</string>
+    <string name="continuee">Continue</string>
+    <string name="session_running">Session is running</string>
+
+    <!--Run-->
+    <string name="still_active_note">The current run will be still active in the background. To stop a run, press the equivalent button.</string>
+    <string name="live">Live</string>
+    <string name="total">Total</string>
+
+    <string name="used_label">Used</string>
+    <string name="ejection_label">Ejection</string>
+    <string name="injection_label">Injection</string>
+    <string name="recycle_rate_label">Recycle rate</string>
+
+    <!--Units-->
+    <string name="meter">Meter</string>
+    <string name="meter_si">m</string>
+    <string name="square_meter">Square meter</string>
+    <string name="square_meter_si">m²</string>
+    <string name="hectare">Hectare</string>
+    <string name="hectare_si" translatable="false">ha</string>
+    <string name="second">Second</string>
+    <string name="liter">Liter</string>
+    <string name="liter_si" translatable="false">l</string>
+    <string name="liter_per_hectare">liter/hectare</string>
+    <string name="liter_per_hectare_si" translatable="false">l/ha</string>
+    <string name="liter_per_square_meter">liter/square meter</string>
+    <string name="liter_per_square_meter_si" translatable="false">l/m²</string>
+
+    <!--Formatted Strings-->
+    <string name="format_size_hectare" translatable="false">%1$s ha</string>
+    <string name="format_size_square_meter" translatable="false">%1$s m²</string>
+    <string name="format_volume_liter_hectare" translatable="false">%1$s l/ha</string>
+    <string name="format_volume_liter_square_meter" translatable="false">%1$s l/m²</string>
+    <string name="format_volume_liter" translatable="false">%1$s l</string>
+    <string name="format_volume_quote" translatable="false">%1$s %%</string>
+    <string name="format_run_count">Run count: %1$d</string>
+
+    <!--Figures-->
+    <string name="title_used_volume">Used</string>
+    <string name="title_ejected_volume">Ejected</string>
+    <string name="title_injected_volume">Injected</string>
+    <string name="title_returned_volume">Returned</string>
+    <string name="title_recycled_volume">Recycled</string>
+    <string name="title_recycled_rate">Recycled</string>
+
+    <!--Import-->
+    <string name="title_import_select_file">Select file</string>
+    <string name="title_import_create_acres">Create acres</string>
+    <string name="title_import_select_parcels">Select parcels</string>
+    <string name="title_import_error">Import error: corrupt file!</string>
+
+    <!--Error-->
+    <string name="error_blank">Field cannot be left blank.</string>
+    <string name="error_required_fields">* indicates required field</string>
+    <string name="disconnected">Disconnected</string>
+    <string name="connected">Connected</string>
+
+    <!--Misc-->
+    <string name="name">Name</string>
+    <string name="or">or</string>
+    <string name="picture">Picture</string>
+    <string name="feedback">Feedback</string>
+    <string name="session">Session</string>
+    <string name="exit">Exit</string>
+    <string name="exit_app">Do you really want to exit the app? Runs will still be active in the background.</string>
+
+    <string name="developed_by">Developed by</string>
+    <string name="developer" translatable="false">Markus Graf\n(@Grafelhaft)</string>
+    <string name="thanks">Special thanks too</string>
+    <string name="helper" translatable="false">Ben Oswald, Martin Eberle, Dennis Weissmann, Moritz Pfaff, Peter Westenberger, Sinan Kaygusuz, Armel Ngueliani-Kameni, Benjamin Leuthold\n\nProf. Dr. Bernd Ruhland\nRichard Grünewald</string>
+
+    <string name="email_gruenewald" translatable="false">richard.gruenewald@gruenewald-schnell.de</string>
+    <string name="email_grafelhaft" translatable="false">grafelhaft@outlook.de</string>
+
+    <!--Settings-->
+    <string name="pref_group_title_general">General</string>
+    <string name="pref_group_summary_general">General</string>
+
+    <string name="pref_group_title_connection">Connection</string>
+    <string name="pref_group_summary_connection">IP address, update interval, …</string>
+
+    <string name="pref_group_title_equipment">Equipment</string>
+    <string name="pref_group_summary_equipment">Working width, nozzle count, …</string>
+
+    <string name="pref_group_title_session">Session</string>
+    <string name="pref_group_summary_session">Display, GPS, auto start, …</string>
+
+    <string name="pref_title_sensor_count">Sensor count</string>
+    <string name="pref_title_working_width">Row with [meter]</string>
+    <string name="pref_title_nozzle_count">Row count</string>
+
+    <string name="pref_title_always_on_screen">Display</string>
+    <string name="pref_summary_always_on_screen">Don\'t turn of screen during active session</string>
+
+    <string name="pref_title_phone_gps">Use phone GPS</string>
+    <string name="pref_summary_phone_gps">Use the phone GPS signal</string>
+
+    <string name="pref_title_ip_address">Server IP address</string>
+    <string name="pref_title_update_interval">Samping rate</string>
+    <string name="pref_title_api_version">API Version</string>
+
+    <string name="pref_title_smoothing">Smoothing</string>
+
+    <string name="pref_title_import">Import</string>
+    <string name="pref_summary_import">Select file to import.</string>
+
+    <string name="pref_title_export">Export</string>
+    <string name="pref_summary_export">Save your data.</string>
+
+
+    <string name="dummy_button" translatable="false">Dummy Button</string>
+    <string name="dummy_content" translatable="false">DUMMY\nCONTENT</string>
+
+    <string name="large_text" translatable="false">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+
+        "Motion provides meaning.\n\n"
+
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+
+        "3D world.\n\n"
+
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+
+        "Light and shadow.\n\n"
+
+        "Within the material environment, virtual lights illuminate the scene. Key lights create "
+        "directional shadows, while ambient light creates soft shadows from all angles.\n"
+        "Shadows in the material environment are cast by these two light sources. In Android "
+        "development, shadows occur when light sources are blocked by sheets of material at "
+        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
+        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+
+        "Resting elevation.\n\n"
+
+        "All material objects, regardless of size, have a resting elevation, or default elevation "
+        "that does not change. If an object changes elevation, it should return to its resting "
+        "elevation as soon as possible.\n\n"
+
+        "Component elevations.\n\n"
+
+        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
+        "does not vary from 6dp in one app to 16dp in another app).\n"
+        "Components may have different resting elevations across platforms, depending on the depth "
+        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
+
+        "Responsive elevation and dynamic elevation offsets.\n\n"
+
+        "Some component types have responsive elevation, meaning they change elevation in response "
+        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
+        "changes are consistently implemented using dynamic elevation offsets.\n"
+        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
+        "to the component’s resting state. They ensure that elevation changes are consistent "
+        "across actions and component types. For example, all components that lift on press have "
+        "the same elevation change relative to their resting elevation.\n"
+        "Once the input event is completed or cancelled, the component will return to its resting "
+        "elevation.\n\n"
+
+        "Avoiding elevation interference.\n\n"
+
+        "Components with responsive elevations may encounter other components as they move between "
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"
+        "On a component level, components can move or be removed before they cause interference. "
+        "For example, a floating action button (FAB) can disappear or move off screen before a "
+        "user picks up a card, or it can move if a snackbar appears.\n"
+        "On the layout level, design your app layout to minimize opportunities for interference. "
+        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
+        "when a user tries to pick up one of cards.\n\n"
+    </string>
+
+</resources>

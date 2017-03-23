@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>de.grafelhaft.winespray.model</groupId>
+  <artifactId>model</artifactId>
+  <version>1.0</version>
+  <packaging>aar</packaging>
+  <name>model</name>
+  <description>Model for WineSpray</description>
+  <url>https://api.bitbucket.org/2.0/repositories/grafelhaft/winespray-model/raw/master</url>
+  <developers>
+    <developer>
+      <id>Grafelhaft</id>
+      <name>Markus Graf</name>
+      <email>grafelhaft@outlook.de</email>
+    </developer>
+  </developers>
+  <dependencies>
+    <dependency>
+      <groupId>com.android.support</groupId>
+      <artifactId>appcompat-v7</artifactId>
+      <version>24.2.1</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+</project>

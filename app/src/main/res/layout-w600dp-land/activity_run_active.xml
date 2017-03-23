@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="de.grafelhaft.winespray.app.ActiveRunActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/view_bottom_margin"
+        android:background="@color/colorPrimary">
+
+        <fragment
+            android:id="@+id/fragment_data"
+            android:name="de.grafelhaft.winespray.app.fragment.ActiveRunFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_run_active" />
+
+        <fragment
+            android:id="@+id/fragment_map"
+            android:name="de.grafelhaft.winespray.app.fragment.MapFragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <com.luseen.spacenavigation.SpaceNavigationView
+        android:id="@+id/space"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_navigation_height"
+        android:layout_alignParentBottom="true"
+        app:space_background_color="@color/default_color"/>
+
+</RelativeLayout>

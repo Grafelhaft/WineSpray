@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:key="@string/pref_key_screen_always_on"
+        android:title="@string/pref_title_always_on_screen"
+        android:summary="@string/pref_summary_always_on_screen"
+        android:defaultValue="false"/>
+
+    <SwitchPreference
+        android:key="@string/pref_key_phone_gps"
+        android:title="@string/pref_title_phone_gps"
+        android:summary="@string/pref_summary_phone_gps"
+        android:defaultValue="true" />
+
+    <ListPreference
+        android:key="@string/pref_key_smoothing"
+        android:title="@string/pref_title_smoothing"
+        android:entryValues="@array/pref_value_smoothing"
+        android:entries="@array/pref_title_smoothing"
+        android:summary="@string/pref_default_smoothing"
+        android:defaultValue="@string/pref_default_smoothing" />
+
+    <!--<SwitchPreference
+        android:defaultValue="false"
+        android:enabled="false"
+        android:key="@string/pref_key_autostart"
+        android:summary="Start run automatically when on acre"
+        android:title="Auto start" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:enabled="false"
+        android:key="@string/pref_key_warning_leaving"
+        android:summary="When leaving parcel"
+        android:title="Warning" />-->
+
+</PreferenceScreen>

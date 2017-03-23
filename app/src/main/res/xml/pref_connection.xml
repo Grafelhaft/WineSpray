@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:defaultValue="@string/pref_default_ip_address"
+        android:inputType="textUri"
+        android:key="@string/pref_key_ip_address"
+        android:singleLine="true"
+        android:title="@string/pref_title_ip_address" />
+
+    <ListPreference
+        android:defaultValue="@string/pref_default_update_interval"
+        android:entries="@array/pref_title_update_interval"
+        android:entryValues="@array/pref_value_update_interval"
+        android:key="@string/pref_key_update_interval"
+        android:title="@string/pref_title_update_interval" />
+
+    <ListPreference
+        android:defaultValue="@string/pref_default_api_version"
+        android:entries="@array/pref_title_api_version"
+        android:entryValues="@array/pref_value_api_version"
+        android:key="@string/pref_key_api_version"
+        android:title="@string/pref_title_api_version" />
+
+</PreferenceScreen>

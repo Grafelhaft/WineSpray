@@ -1,0 +1,82 @@
+<resources>
+    <!--Strings related to settings-->
+
+    <!--Session-->
+
+    <string name="pref_key_ftu" translatable="false">winespray_preference_ftu</string>
+    <string name="pref_key_screen_always_on" translatable="false">winespray_pref_screen_always_on</string>
+    <string name="pref_key_phone_gps" translatable="false">winespray_pref_phone_gps</string>
+
+    <string name="pref_key_smoothing" translatable="false">winespray_pref_key_smoothing</string>
+    <string name="pref_default_smoothing" translatable="false">60</string>
+    <string-array name="pref_value_smoothing" translatable="false">
+        <item>1</item>
+        <item>30</item>
+        <item>60</item>
+        <item>90</item>
+    </string-array>
+    <string-array name="pref_title_smoothing">
+        <item>None</item>
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+    </string-array>
+
+    <!--Equipment-->
+    <string name="pref_key_sensor_count" translatable="false">winespray_pref_key_sensor_count</string>
+    <string name="pref_default_sensor_count" translatable="false">3</string>
+    <string-array name="pref_value_sensor_count" translatable="false">
+        <item>1</item>
+        <item>3</item>
+    </string-array>
+
+    <string name="pref_key_working_width" translatable="false">winespray_pref_key_working_width</string>
+    <string name="pref_default_working_width" translatable="false">1.8</string>
+
+    <string name="pref_key_nozzle_count" translatable="false">winespray_pref_key_nozzle_count</string>
+    <string name="pref_default_nozzle_count" translatable="false">2</string>
+    <string-array name="pref_value_nozzle_count" translatable="false">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <!--Network Connection-->
+    <string name="pref_key_ip_address" translatable="false">winespray_pref_key_ip_address</string>
+    <string name="pref_default_ip_address" translatable="false">192.168.2.4</string>
+
+    <string name="pref_key_update_interval" translatable="false">winespray_pref_key_update_interval</string>
+    <string name="pref_default_update_interval" translatable="false">1000</string>
+    <string-array name="pref_value_update_interval" translatable="false">
+        <item>1000</item>
+        <item>2000</item>
+        <item>3000</item>
+        <item>4000</item>
+        <item>5000</item>
+    </string-array>
+    <string-array name="pref_title_update_interval">
+        <item>1 second</item>
+        <item>2 seconds</item>
+        <item>3 seconds</item>
+        <item>4 seconds</item>
+        <item>5 seconds</item>
+    </string-array>
+
+    <string name="pref_key_api_version" translatable="false">winespray_pref_key_api_version</string>
+    <string name="pref_default_api_version" translatable="false">0</string>
+    <string-array name="pref_value_api_version" translatable="false">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="pref_title_api_version">
+        <item>HS Worms SS16 V1.0</item>
+        <item>HS Worms WS16/17 V2.0</item>
+    </string-array>
+
+    <string name="pref_key_autostart" translatable="false">winespray_pref_key_autostart</string>
+    <string name="pref_key_warning_leaving" translatable="false">winespray_pref_key_warning_leaving</string>
+
+    <!-- Debug -->
+    <string name="pref_key_dummy_data" translatable="false">winespray_pref_dummy_data</string>
+
+</resources>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="de.grafelhaft.winespray.app">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission
+        android:name="android.permission.ACCESS_WIFI_STATE"
+        android:required="true" />
+    <uses-permission
+        android:name="android.permission.CHANGE_WIFI_STATE"
+        android:required="true" />
+    <uses-permission
+        android:name="android.permission.INTERNET"
+        android:required="true" />
+
+    <application
+        android:name=".WineApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_app_icon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:debuggable="false">
+
+        <!-- API KEYS -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_api_key" />
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+        <activity
+            android:name=".SplashScreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar.Fullscreen.SplashScreen"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.grafelhaft.winespray.app.MainActivity" />
+
+            <intent-filter>
+                <action android:name="de.grafelhaft.winespray.app.prefs.equipment" />
+                <action android:name="de.grafelhaft.winespray.app.prefs.session" />
+                <action android:name="de.grafelhaft.winespray.app.prefs.connection" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".TutorialActivity"
+            android:theme="@style/AppTheme.NoActionBar.Fullscreen.Tutorial"
+            android:screenOrientation="portrait"/>
+
+        <!-- SESSIONS AND RUNS -->
+        <activity
+            android:name=".SessionDetailActivity"
+            android:label="@string/title_activity_session_detail"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar.CollapsingToolbar"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.grafelhaft.winespray.app.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ActiveSessionActivity"
+            android:label="@string/title_activity_session_active"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.grafelhaft.winespray.app.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ActiveRunActivity"
+            android:label="@string/title_activity_run_active"
+            android:parentActivityName=".ActiveSessionActivity"
+            android:theme="@style/AppTheme.NoActionBar.Fullscreen"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.grafelhaft.winespray.app.ActiveSessionActivity" />
+        </activity>
+        <activity
+            android:name=".RunDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+
+        <!-- MASTER DATA -->
+
+        <activity
+            android:name=".AcreListActivity"
+            android:label="@string/title_activity_acre_list"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.grafelhaft.winespray.app.MainActivity" />
+        </activity>
+        <activity
+            android:name=".AcreDetailActivity"
+            android:label="@string/title_activity_acre_detail"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".AcreRecordActivity"
+            android:theme="@style/AppTheme.NoActionBar.Fullscreen"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ParcelListActivity"
+            android:label="@string/title_activity_parcel_list"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.grafelhaft.winespray.app.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ParcelDetailActivity"
+            android:label="@string/title_activity_parcel_detail"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".DistrictListActivity"
+            android:label="@string/title_activity_district_list"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.grafelhaft.winespray.app.MainActivity" />
+        </activity>
+        <activity
+            android:name=".GrapeListActivity"
+            android:label="@string/title_activity_grape_list"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.grafelhaft.winespray.app.MainActivity" />
+        </activity>
+        <activity
+            android:name=".TestActivity"
+            android:label="@string/title_activity_test"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ImportActivity"
+            android:theme="@style/AppTheme.NoActionBar.Fullscreen.Tutorial"
+            android:screenOrientation="locked"/>
+        <activity
+            android:name=".dialog.DialogActivity"
+            android:theme="@style/AppTheme.Dialog"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AboutActivity"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.grafelhaft.winespray.app.MainActivity" />
+        </activity>
+
+        <!-- Services -->
+        <service android:name=".service.DataCrawlerService" />
+
+    </application>
+
+</manifest>

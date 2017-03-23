@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:defaultValue="@string/pref_default_sensor_count"
+        android:entries="@array/pref_value_sensor_count"
+        android:entryValues="@array/pref_value_sensor_count"
+        android:key="@string/pref_key_sensor_count"
+        android:summary="@string/pref_default_sensor_count"
+        android:title="@string/pref_title_sensor_count"
+        android:enabled="false"/>
+
+    <EditTextPreference
+        android:defaultValue="@string/pref_default_working_width"
+        android:inputType="numberDecimal"
+        android:key="@string/pref_key_working_width"
+        android:singleLine="true"
+        android:summary="@string/pref_default_working_width"
+        android:title="@string/pref_title_working_width" />
+
+    <ListPreference
+        android:defaultValue="@string/pref_default_nozzle_count"
+        android:entries="@array/pref_value_nozzle_count"
+        android:entryValues="@array/pref_value_nozzle_count"
+        android:key="@string/pref_key_nozzle_count"
+        android:summary="@string/pref_default_nozzle_count"
+        android:title="@string/pref_title_nozzle_count" />
+
+</PreferenceScreen>

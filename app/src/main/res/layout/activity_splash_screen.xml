@@ -1,0 +1,22 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="de.grafelhaft.winespray.app.SplashScreenActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/img_wallpaper"
+        android:scaleType="centerCrop"
+        android:alpha="0.2"/>
+
+    <ImageView
+        android:layout_width="196dp"
+        android:layout_height="196dp"
+        android:src="@drawable/ic_app_logo"
+        android:padding="32dp"
+        android:layout_gravity="center"
+        android:background="@drawable/shape_circle_white"/>
+
+</FrameLayout>

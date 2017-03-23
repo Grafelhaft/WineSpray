@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_sessions"
+        icon="@drawable/ic_list_black_24dp"
+        title="@string/title_fragment_session_list"/>
+    <tab
+        id="@+id/tab_map"
+        icon="@drawable/ic_map_black_24dp"
+        title="@string/title_fragment_map" />
+    <tab
+        id="@+id/tab_notes"
+        icon="@drawable/ic_place_black_24dp"
+        title="@string/title_fragment_note_list"
+        badgeBackgroundColor="@color/colorAccent"/>
+    <tab
+        id="@+id/tab_profile"
+        icon="@drawable/ic_person_black_24dp"
+        title="@string/title_fragment_profile"/>
+</tabs>

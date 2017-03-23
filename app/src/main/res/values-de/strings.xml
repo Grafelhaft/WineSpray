@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_add">Hinzufügen</string>
+    <string name="action_delete">Löschen</string>
+    <string name="action_edit">Bearbeiten</string>
+    <string name="action_save">Speichern</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="active">Aktiv</string>
+    <string name="continuee">Fortfahren</string>
+    <string name="dialog_agree">Zustimmen</string>
+    <string name="dialog_cancel">Abbrechen</string>
+    <string name="dialog_confirm">Bestätigen</string>
+    <string name="dialog_delete">Löschen</string>
+    <string name="dialog_disagree">Widersprechen</string>
+    <string name="dialog_neutral">Mehr</string>
+    <string name="dialog_save">Speichern</string>
+    <string name="dialog_text_delete">Dieses Element wird unwiderruflich gelöscht.</string>
+    <string name="dialog_title_delete">Löschen</string>
+    <string name="dialog_title_message">Notiz</string>
+    <string name="error_blank">Dieses Feld darf nicht leer sein.</string>
+    <string name="error_required_fields">* kennzeichnet benötigtes Feld</string>
+    <string name="ftu_description_sensor_count">Wie viele Sensoren setzen Sie sein? Sie können dies jederzeit in den App-Einstellungen ändern.</string>
+    <string name="ftu_description_welcome">Vielen Dank, dass Sie sich für PROJEKT:Carlowitz entschieden haben!</string>
+    <string name="ftu_title_sensor_count">Sensoren</string>
+    <string name="ftu_title_welcome">Willkommen</string>
+    <string name="hectare">Hektar</string>
+    <string name="liter_per_hectare">Liter/Hektar</string>
+    <string name="liter_per_square_meter">Liter/Quadratmeter</string>
+    <string name="meter">Meter</string>
+    <string name="name">Name</string>
+    <string name="neww">Neu</string>
+    <string name="or">oder</string>
+    <string name="pause">Pause</string>
+    <string name="pref_group_summary_connection">IP Adresse, Update Intervall, …</string>
+    <string name="pref_group_summary_equipment">Zeilenbreite, Zeilenanzahl, …</string>
+    <string name="pref_group_summary_general">Allgemein</string>
+    <string name="pref_group_summary_session">Bildschirm, GPS, Autostart, …</string>
+    <string name="pref_group_title_connection">Verbindung</string>
+    <string name="pref_group_title_equipment">Ausrüstung</string>
+    <string name="pref_group_title_general">Allgemein</string>
+    <string name="pref_group_title_session">Spritzung</string>
+    <string name="pref_summary_always_on_screen">Bildschirm bei aktivem Lauf nicht ausschalten</string>
+    <string name="pref_summary_phone_gps">Das GPS Signal des Telefons nutzen</string>
+    <string name="pref_title_always_on_screen">Bildschirm</string>
+    <string name="pref_title_api_version">API Version</string>
+    <string name="pref_title_ip_address">Server IP Adresse</string>
+    <string name="pref_title_nozzle_count">Zeilenanzahl</string>
+    <string name="pref_title_phone_gps">Telefon GPS Signal</string>
+    <string name="pref_title_sensor_count">Sensorenanzahl</string>
+    <string name="pref_title_update_interval">Abtastrate</string>
+    <string name="pref_title_working_width">Zeilenbreite [Meter]</string>
+    <string name="profile_grapes">Rebsorten</string>
+    <string name="profile_acres">Schläge</string>
+    <string name="profile_parcels">Flurstücke</string>
+    <string name="profile_sprays">Spritzmittel</string>
+    <string name="second">Sekunde</string>
+    <string name="session_running">Spritzung läuft</string>
+    <string name="start">Start</string>
+    <string name="still_active_note">Der aktuelle Lauf ist im Hintergrund aktiv. Um ihn zu stoppen, klicken Sie auf den entsprechenden Button.</string>
+    <string name="stop">Stop</string>
+    <string name="title_activity_grape_detail">Neue Rebsorte</string>
+    <string name="title_activity_grape_list">Rebsorten</string>
+    <string name="title_activity_acre_detail">Neuer Schlag</string>
+    <string name="title_activity_acre_list">Schläge</string>
+    <string name="title_activity_parcel_detail">Neues Flurstück</string>
+    <string name="title_activity_parcel_list">Flurstücke</string>
+    <string name="title_activity_run_active">Aktiver Lauf</string>
+    <string name="title_activity_session_active">Neue Spritzung</string>
+    <string name="title_activity_session_detail">Spritzungs Details</string>
+    <string name="title_activity_settings">Einstellungen</string>
+    <string name="title_ejected_volume">Ausbringmenge</string>
+    <string name="title_fragment_map">Karte</string>
+    <string name="title_fragment_note_list">Geo-Notizen</string>
+    <string name="title_fragment_profile">Profil</string>
+    <string name="title_fragment_session_list">Spritzungen</string>
+    <string name="title_injected_volume">Injektionsmenge</string>
+    <string name="title_recycled_rate">Recyclerate</string>
+    <string name="title_recycled_volume">Recyclemenge</string>
+    <string name="title_returned_volume">Rücklaufmenge</string>
+    <string name="title_used_volume">Verbrauchsmenge</string>
+    <string name="picture">Foto</string>
+    <string name="session">Spritzung</string>
+    <string name="pref_title_smoothing">Glättung</string>
+    <string name="live">Aktuell</string>
+    <string name="total">Gesamt</string>
+    <string name="exit">Beenden</string>
+    <string name="exit_app">Möchten Sie die App wirklich beenden? Läufe sind weiterhin im Hintergrund aktiv.</string>
+    <string name="area">Fläche</string>
+    <string name="company">Betrieb</string>
+    <string name="datapoint">Datenpunkt</string>
+    <string name="district">Gemarkung</string>
+    <string name="einzellage">Einzellage</string>
+    <string name="fall">Neigung</string>
+    <string name="grape">Rebe</string>
+    <string name="grosslage">Grosslage</string>
+    <string name="note">Geo-Notiz</string>
+    <string name="parcel">Flurstück</string>
+    <string name="purpose">Zweck</string>
+    <string name="region">Anbaugebiet</string>
+    <string name="run">Lauf</string>
+    <string name="runconfig">Konfiguration</string>
+    <string name="sensor">Sensor</string>
+    <string name="zone">Bereich</string>
+    <string name="acre">Schlag</string>
+    <string name="area_useful">Nutzfläche</string>
+    <string name="grape_red">Rot</string>
+    <string name="grape_white">Weiß</string>
+    <string name="profile_districts">Gemarkungen</string>
+    <string name="unitOut">Einheit</string>
+    <string name="injection_label">Injektion</string>
+    <string name="recycle_rate_label">Recyclingquote</string>
+    <string name="used_label">Verbrauch</string>
+    <string name="ejection_label">Ausbringmenge</string>
+    <string name="action_clear">Aufräumen</string>
+    <string name="unknown">Unbekannt</string>
+    <string name="details">Details</string>
+    <string name="meter_si">m</string>
+    <string name="square_meter">Quadratmeter</string>
+    <string name="square_meter_si">m²</string>
+    <string-array name="pref_title_smoothing">
+        <item>Keine</item>
+        <item>Schwach</item>
+        <item>Mittel</item>
+        <item>Stark</item>
+    </string-array>
+    <string-array name="pref_title_update_interval">
+        <item>1 Sekunde</item>
+        <item>2 Sekunden</item>
+        <item>3 Sekunden</item>
+        <item>4 Sekunden</item>
+        <item>5 Sekunden</item>
+    </string-array>
+    <string-array name="pref_title_api_version">
+        <item>HS Worms SS16 V1.0</item>
+        <item>HS Worms WS16/17 V2.0</item>
+    </string-array>
+    <string name="_placeholder_">lädt...</string>
+    <string name="action_done">Fertig</string>
+    <string name="liter">Liter</string>
+    <string name="action_reset_gps">GPS zurücksetzen</string>
+    <string name="number">Nummer</string>
+    <string name="profile_about">Über &amp; Kontakt</string>
+    <string name="title_activity_district_list">Gemarkungen</string>
+    <string name="action_record">GPS aufzeichnen</string>
+    <string name="disconnected">Getrennt</string>
+    <string name="format_run_count">Anzahl Läufe: %1$d</string>
+    <string name="connected">Verbunden</string>
+    <string name="pref_title_export">Export</string>
+    <string name="pref_title_import">Import</string>
+    <string name="pref_summary_export">Sichern Sie Ihre Daten.</string>
+    <string name="pref_summary_import">Wählen Sie eine Datei zum Importiern.</string>
+    <string name="action_open">Öffnen</string>
+    <string name="dialog_open">Öffnen</string>
+    <string name="title_import_select_file">Datei auswählen</string>
+    <string name="title_import_create_acres">Schläge erstellen</string>
+    <string name="title_import_select_parcels">Flurstücke wählen</string>
+    <string name="title_import_error">Import Fehler: Datei fehlerhaft!</string>
+    <string name="feedback">Kontakt</string>
+    <string name="thanks">Besonderen Dank an</string>
+    <string name="developed_by">Entwickelt von</string>
+    <string name="app_name">WineSpray</string>
+</resources>

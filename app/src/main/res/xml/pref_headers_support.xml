@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Preference
+        android:icon="@drawable/ic_tractor_black_24dp"
+        android:summary="@string/pref_group_summary_equipment"
+        android:title="@string/pref_group_title_equipment">
+        <intent
+            android:action="de.grafelhaft.winespray.app.prefs.equipment"
+            android:targetPackage="de.grafelhaft.winespray.app" />
+    </Preference>
+    <Preference
+        android:icon="@drawable/ic_recycle_black_24dp"
+        android:summary="@string/pref_group_summary_session"
+        android:title="@string/pref_group_title_session">
+        <intent
+            android:action="de.grafelhaft.winespray.app.prefs.session"
+            android:targetPackage="de.grafelhaft.winespray.app" />
+    </Preference>
+    <Preference
+        android:icon="@drawable/ic_wifi_black_24dp"
+        android:summary="@string/pref_group_summary_connection"
+        android:title="@string/pref_group_title_connection">
+        <intent
+            android:action="de.grafelhaft.winespray.app.prefs.connection"
+            android:targetPackage="de.grafelhaft.winespray.app" />
+    </Preference>
+
+    <PreferenceCategory android:title="@string/dialog_neutral">
+
+        <de.grafelhaft.grafellib.preference.LocalBroadcastPreference
+            android:icon="@drawable/ic_file_download_black_24dp"
+            android:summary="@string/pref_summary_import"
+            android:title="@string/pref_title_import">
+            <intent android:action="de.grafelhaft.winespray.app.IMPORT" />
+        </de.grafelhaft.grafellib.preference.LocalBroadcastPreference>
+
+        <de.grafelhaft.grafellib.preference.LocalBroadcastPreference
+            android:icon="@drawable/ic_file_upload_black_24dp"
+            android:summary="@string/pref_summary_export"
+            android:title="@string/pref_title_export">
+            <intent android:action="de.grafelhaft.winespray.app.EXPORT" />
+        </de.grafelhaft.grafellib.preference.LocalBroadcastPreference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Debug">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/pref_key_dummy_data"
+            android:summary="Generate dummy data"
+            android:title="Dummy data" />
+
+        <de.grafelhaft.grafellib.preference.LocalBroadcastPreference
+            android:summary="Delete all data"
+            android:title="Clear">
+            <intent android:action="de.grafelhaft.winespray.app.CLEAR" />
+        </de.grafelhaft.grafellib.preference.LocalBroadcastPreference>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

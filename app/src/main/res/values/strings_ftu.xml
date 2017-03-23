@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ftu_title_welcome">Welcome</string>
+    <string name="ftu_description_welcome">Thank you for choosing PROJECT:Carlowitz!</string>
+
+    <string name="ftu_title_sensor_count">Sensors</string>
+    <string name="ftu_description_sensor_count">Choose how many sensors you are using. You can change this later inside your app settings.</string>
+</resources>
