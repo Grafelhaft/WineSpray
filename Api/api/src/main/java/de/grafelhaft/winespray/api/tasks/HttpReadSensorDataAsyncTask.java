@@ -43,9 +43,9 @@ public class HttpReadSensorDataAsyncTask extends AHttpGetAsyncTask<DataPoint, Da
     protected Response doInBackground(Void... params) {
         Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
 
-        if (this.connect(baseUrl)) {
-            try {
-                while (_state == State.ACTIVE || _state == State.PAUSED) {
+        try {
+            while (_state == State.ACTIVE || _state == State.PAUSED) {
+                if (this.connect(baseUrl)) {
 
                     if (_state == State.ACTIVE) {
                         DataPoint dataPoint = convertResultToOutput(read());
@@ -53,15 +53,16 @@ public class HttpReadSensorDataAsyncTask extends AHttpGetAsyncTask<DataPoint, Da
                     }
 
                     Thread.sleep(_sleep);
+                } else {
+                    notifyConnectionResponse(new HttpResponse(HttpURLConnection.HTTP_GATEWAY_TIMEOUT, ""));
                 }
-            } catch (IOException | InterruptedException e) {
-                e.printStackTrace();
-            } finally {
-                this.disconnect();
             }
-        } else {
-            notifyConnectionResponse(new HttpResponse(HttpURLConnection.HTTP_GATEWAY_TIMEOUT, ""));
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            this.disconnect();
         }
+
         return null;
     }
 
@@ -69,7 +70,6 @@ public class HttpReadSensorDataAsyncTask extends AHttpGetAsyncTask<DataPoint, Da
     protected void onProgressUpdate(DataPoint... values) {
         DataPoint dataPoint = values[0];
         onTaskOutput(dataPoint);
-        Log.d("onProgressUpdate", "onProgressUpdate" + dataPoint.toString());
     }
 
     @Override

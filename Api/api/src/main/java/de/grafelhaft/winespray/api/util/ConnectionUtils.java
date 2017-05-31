@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 public class ConnectionUtils {
 
     public static boolean isIpAddressValid(String ipAddress) {
-        return  Pattern.matches("^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$", ipAddress);
+        return  Pattern.matches("^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}(:[0-9]{0,5})?$", ipAddress);
     }
 
 }

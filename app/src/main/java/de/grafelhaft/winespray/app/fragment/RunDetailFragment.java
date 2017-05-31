@@ -169,21 +169,23 @@ public class RunDetailFragment extends BaseFragment implements AdapterView.OnIte
             case R.id.spinner_acre:
                 final Acre acre = (Acre) _spinAcre.getItemAtPosition(position);
 
-                Realm.getDefaultInstance().executeTransaction(new Realm.Transaction() {
-                    @Override
-                    public void execute(Realm realm) {
-                        Acre oldAcre = _run.getAcre();
-                        _run.setAcre(acre);
-                        if (_run.getAcre().getArea().getLocations().size() <= 0) {
-                            _run.getAcre().getArea().setLocations(oldAcre.getArea().getLocations());
+                if (acre != null && acre.getArea() != null) {
+                    Realm.getDefaultInstance().executeTransaction(new Realm.Transaction() {
+                        @Override
+                        public void execute(Realm realm) {
+                            Acre oldAcre = _run.getAcre();
+                            _run.setAcre(acre);
+                            if (_run.getAcre().getArea().getLocations().size() <= 0) {
+                                _run.getAcre().getArea().setLocations(oldAcre.getArea().getLocations());
+                            }
                         }
+                    });
+
+                    setText(_run);
+
+                    for (OnAcreChangedListener l : _listeners) {
+                        l.onAcreChanged(acre);
                     }
-                });
-
-                setText(_run);
-
-                for (OnAcreChangedListener l : _listeners) {
-                    l.onAcreChanged(acre);
                 }
                 break;
         }

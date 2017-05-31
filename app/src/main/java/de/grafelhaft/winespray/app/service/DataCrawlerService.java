@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.IBinder;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
@@ -31,6 +32,7 @@ import de.grafelhaft.winespray.app.util.IntentUtils;
 import de.grafelhaft.winespray.model.DataPoint;
 import de.grafelhaft.winespray.model.Location;
 import de.grafelhaft.winespray.model.Run;
+import de.grafelhaft.winespray.model.SensorData;
 import de.grafelhaft.winespray.model.SensorPurpose;
 import de.grafelhaft.winespray.model.Session;
 import de.grafelhaft.winespray.model.State;
@@ -58,91 +60,92 @@ public class DataCrawlerService extends Service implements OnTaskOutputListener<
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (intent.getAction().equals(ServiceConstants.ACTION.START_FOREGROUND_ACTION)) {
-            Log.i(LOG_TAG, "Received Start Foreground Intent ");
+        if (intent != null && intent.getAction() != null) {
+            if (intent.getAction().equals(ServiceConstants.ACTION.START_FOREGROUND_ACTION)) {
+                Log.i(LOG_TAG, "Received Start Foreground Intent ");
 
-            //Get session id
-            _sessionId = intent.getLongExtra(IntentUtils.EXTRA_SESSION_ID, -1);
+                //Get session id
+                _sessionId = intent.getLongExtra(IntentUtils.EXTRA_SESSION_ID, -1);
 
-            if (_sessionId >= 0) {
+                if (_sessionId >= 0) {
 
-                //Create new run
-                Realm.getDefaultInstance().executeTransaction(new Realm.Transaction() {
-                    @Override
-                    public void execute(Realm realm) {
-                        _run = new Run();
-                        _runId = RealmHelper.setAutoId(_run, Run.class);
-                        _run.setRunConfig(RunController.getInstance().getRunConfig());
-                        _run.start();
+                    //Create new run
+                    Realm.getDefaultInstance().executeTransaction(new Realm.Transaction() {
+                        @Override
+                        public void execute(Realm realm) {
+                            _run = new Run();
+                            _runId = RealmHelper.setAutoId(_run, Run.class);
+                            _run.setRunConfig(RunController.getInstance().getRunConfig());
+                            _run.start();
 
-                        _run = realm.copyToRealmOrUpdate(_run);
-                    }
-                });
+                            _run = realm.copyToRealmOrUpdate(_run);
+                        }
+                    });
 
-                //Start GPS service
-                GpsLocationService.getInstance().start(this);
+                    //Start GPS service
+                    GpsLocationService.getInstance().start(this);
 
-                //Start http-get task
-                startUpdateTask();
+                    //Start http-get task
+                    startUpdateTask();
 
-                //Change state to ACTIVE
-                _state = State.ACTIVE;
-                RunController.getInstance().notifySessionStarted();
-
-                //Build foreground notification
-                Notification notification = buildNotification();
-                startForeground(ServiceConstants.NOTIFICATION_ID.FOREGROUND_SERVICE, notification);
-
-            } else {
-                stopSelf();
-            }
-
-        } else if (intent.getAction().equals(ServiceConstants.ACTION.PAUSE_FOREGROUND_ACTION)) {
-            Log.i(LOG_TAG, "Received Pause Foreground Intent ");
-
-            //Pause or unpause
-            if (!_run.isStopped()) {
-                if (_state == State.ACTIVE) {
-                    _state = State.PAUSED;
-                    RunController.getInstance().notifySessionPaused();
-                } else {
+                    //Change state to ACTIVE
                     _state = State.ACTIVE;
                     RunController.getInstance().notifySessionStarted();
+
+                    //Build foreground notification
+                    Notification notification = buildNotification();
+                    startForeground(ServiceConstants.NOTIFICATION_ID.FOREGROUND_SERVICE, notification);
+
+                } else {
+                    stopSelf();
                 }
-            }
 
-            updateNotification();
+            } else if (intent.getAction().equals(ServiceConstants.ACTION.PAUSE_FOREGROUND_ACTION)) {
+                Log.i(LOG_TAG, "Received Pause Foreground Intent ");
 
-        } else if (intent.getAction().equals(ServiceConstants.ACTION.STOP_FOREGROUND_ACTION)) {
-            Log.i(LOG_TAG, "Received Stop Foreground Intent");
-
-            _state = State.STOPPED;
-            RunController.getInstance().notifySessionStopped();
-
-            //Attach run to session
-            if (_run != null) {
-                Realm.getDefaultInstance().executeTransaction(new Realm.Transaction() {
-                    @Override
-                    public void execute(Realm realm) {
-                        _run.stop();
-
-                        RunController.getInstance().calcArea(_runId);
-
-                        Session session = (Session) RealmHelper.findWhereId(Session.class, _sessionId);
-                        session.getRuns().add(_run);
-                        realm.copyToRealmOrUpdate(session);
+                //Pause or unpause
+                if (!_run.isStopped()) {
+                    if (_state == State.ACTIVE) {
+                        _state = State.PAUSED;
+                        RunController.getInstance().notifySessionPaused();
+                    } else {
+                        _state = State.ACTIVE;
+                        RunController.getInstance().notifySessionStarted();
                     }
-                });
-            }
+                }
 
-            if (_debugTimer != null) {
-                _debugTimer.cancel();
-            }
+                updateNotification();
 
-            stopForeground(true);
-            stopSelf();
+            } else if (intent.getAction().equals(ServiceConstants.ACTION.STOP_FOREGROUND_ACTION)) {
+                Log.i(LOG_TAG, "Received Stop Foreground Intent");
+
+                _state = State.STOPPED;
+                RunController.getInstance().notifySessionStopped();
+
+                //Attach run to session
+                if (_run != null) {
+                    Realm.getDefaultInstance().executeTransaction(new Realm.Transaction() {
+                        @Override
+                        public void execute(Realm realm) {
+                            _run.stop();
+
+                            RunController.getInstance().calcArea(_runId);
+
+                            Session session = (Session) RealmHelper.findWhereId(Session.class, _sessionId);
+                            session.getRuns().add(_run);
+                            realm.copyToRealmOrUpdate(session);
+                        }
+                    });
+                }
+
+                if (_debugTimer != null) {
+                    _debugTimer.cancel();
+                }
+
+                stopForeground(true);
+                stopSelf();
+            }
         }
-
         return START_STICKY;
     }
 
@@ -254,7 +257,6 @@ public class DataCrawlerService extends Service implements OnTaskOutputListener<
                 });
 
                 RunController.getInstance().notifyDataPointAdded(_runId, dataPoint);
-
             }
         }
     }

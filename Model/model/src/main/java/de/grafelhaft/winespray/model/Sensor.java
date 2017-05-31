@@ -13,7 +13,6 @@ import io.realm.annotations.PrimaryKey;
 
 public class Sensor extends RealmObject implements IModel<Sensor>, IJsonParsable<Sensor> {
 
-    @PrimaryKey
     private Long id;
 
     private String description;
@@ -28,6 +27,7 @@ public class Sensor extends RealmObject implements IModel<Sensor>, IJsonParsable
     public Sensor(int purpose, String unit) {
         this.unit = unit;
         this.purpose = purpose;
+        this.description = "";
     }
 
 

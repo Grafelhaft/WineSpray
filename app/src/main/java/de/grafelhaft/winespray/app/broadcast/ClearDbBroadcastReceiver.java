@@ -19,7 +19,12 @@ public class ClearDbBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         counter++;
         if (counter >= 2) {
-            Realm.getDefaultInstance().deleteAll();
+            Realm.getDefaultInstance().executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    realm.deleteAll();
+                }
+            });
             counter = 0;
         }
     }

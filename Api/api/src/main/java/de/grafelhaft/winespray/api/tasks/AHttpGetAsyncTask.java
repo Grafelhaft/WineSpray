@@ -112,7 +112,7 @@ public abstract class AHttpGetAsyncTask<Progress, Output> extends AHttpAsyncTask
         String line;
 
         while ((line = reader.readLine()) != null) {
-            buffer.append(line).append("\n");
+            buffer.append(line);
         }
 
         if (buffer.length() == 0) {
