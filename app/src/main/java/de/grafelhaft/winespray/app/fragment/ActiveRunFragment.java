@@ -6,9 +6,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.volley.VolleyError;
+
 import de.grafelhaft.grafellib.async.http.HttpResponse;
 import de.grafelhaft.grafellib.async.http.OnConnectionResponseListener;
 import de.grafelhaft.grafellib.fragment.BaseFragment;
+import de.grafelhaft.winespray.api.OnErrorListener;
 import de.grafelhaft.winespray.app.R;
 import de.grafelhaft.winespray.app.controller.RunController;
 import de.grafelhaft.winespray.app.util.MathUtils;
@@ -21,7 +24,7 @@ import de.grafelhaft.winespray.model.realm.RealmHelper;
 /**
  * Created by Markus on 16.09.2016.
  */
-public class ActiveRunFragment extends BaseFragment implements View.OnClickListener, DataPoint.OnDataPointAddedListener, State.OnStateChangedListener, OnConnectionResponseListener {
+public class ActiveRunFragment extends BaseFragment implements View.OnClickListener, DataPoint.OnDataPointAddedListener, State.OnStateChangedListener, OnErrorListener {
 
     public static final int MODE_LIVE = 1;
     public static final int MODE_TOTAL = 2;
@@ -98,7 +101,7 @@ public class ActiveRunFragment extends BaseFragment implements View.OnClickListe
         super.onResume();
         RunController.getInstance().addOnDataPointAddedListener(this);
         RunController.getInstance().addOnStateChangedListener(this);
-        RunController.getInstance().addOnConnectionResponeListener(this);
+        RunController.getInstance().addOnErrorListener(this);
     }
 
     @Override
@@ -106,7 +109,7 @@ public class ActiveRunFragment extends BaseFragment implements View.OnClickListe
         super.onPause();
         RunController.getInstance().removeOnDataPointAddedListener(this);
         RunController.getInstance().removeOnStateChangedListener(this);
-        RunController.getInstance().removeOnConnectionResponeListener(this);
+        RunController.getInstance().removeOnErrorListener(this);
     }
 
     @Override
@@ -140,7 +143,7 @@ public class ActiveRunFragment extends BaseFragment implements View.OnClickListe
     }
 
     @Override
-    public void onConnectionResponse(HttpResponse httpResponse) {
+    public void onError(VolleyError error) {
         new Handler(getActivity().getMainLooper()).post(new Runnable() {
             @Override
             public void run() {

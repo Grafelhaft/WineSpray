@@ -5,13 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.android.volley.VolleyError;
 import com.google.common.collect.EvictingQueue;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import de.grafelhaft.grafellib.async.OnTaskOutputListener;
 import de.grafelhaft.grafellib.async.http.HttpResponse;
 import de.grafelhaft.grafellib.async.http.OnConnectionResponseListener;
 import de.grafelhaft.grafellib.util.PrefUtils;
@@ -22,6 +22,7 @@ import de.grafelhaft.winespray.acrecontrol.Polygon;
 import de.grafelhaft.winespray.acrecontrol.PolygonBuilder;
 import de.grafelhaft.winespray.acrecontrol.ScannerTask;
 import de.grafelhaft.winespray.api.Api;
+import de.grafelhaft.winespray.api.OnErrorListener;
 import de.grafelhaft.winespray.app.R;
 import de.grafelhaft.winespray.app.service.AcreControlService;
 import de.grafelhaft.winespray.app.service.DataCrawlerService;
@@ -44,7 +45,7 @@ import io.realm.RealmResults;
  * Created by @author Markus Graf on 12.10.2016.
  */
 
-public class RunController implements State.OnStateChangedListener, OnConnectionResponseListener {
+public class RunController implements State.OnStateChangedListener, OnErrorListener {
 
     private static final String LOG_TAG = RunController.class.getName();
 
@@ -308,24 +309,24 @@ public class RunController implements State.OnStateChangedListener, OnConnection
     }
 
 
-    private List<OnConnectionResponseListener> _onConnectionResponseListeners = new ArrayList<>();
+    private List<OnErrorListener> _onErrorListeners = new ArrayList<>();
 
-    public void addOnConnectionResponeListener(OnConnectionResponseListener l) {
-        this._onConnectionResponseListeners.add(l);
+    public void addOnErrorListener(OnErrorListener l) {
+        this._onErrorListeners.add(l);
     }
 
-    public void removeOnConnectionResponeListener(OnConnectionResponseListener l) {
-        this._onConnectionResponseListeners.remove(l);
+    public void removeOnErrorListener(OnErrorListener l) {
+        this._onErrorListeners.remove(l);
     }
 
-    private void notifyConnectionResponse(HttpResponse response) {
-        for (OnConnectionResponseListener l : _onConnectionResponseListeners) {
-            l.onConnectionResponse(response);
+    private void notifyError(VolleyError error) {
+        for (OnErrorListener l : _onErrorListeners) {
+            l.onError(error);
         }
     }
 
     @Override
-    public void onConnectionResponse(HttpResponse httpResponse) {
-        notifyConnectionResponse(httpResponse);
+    public void onError(VolleyError error) {
+        notifyError(error);
     }
 }

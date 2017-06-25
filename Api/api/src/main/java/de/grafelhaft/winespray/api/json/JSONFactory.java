@@ -34,40 +34,45 @@ public class JSONFactory {
     }
 
     private DataPoint convertJsonFromV1(JSONObject jsonObject) {
+        try {
+            double sensor1 = jsonObject.optDouble(HsWormsAttributes.V1.SENSOR_1);
+            double sensor2 = jsonObject.optDouble(HsWormsAttributes.V1.SENSOR_2);
+            double sensor3 = jsonObject.optDouble(HsWormsAttributes.V1.SENSOR_3);
 
-        double sensor1 = jsonObject.optDouble(HsWormsAttributes.V1.SENSOR_1);
-        double sensor2 = jsonObject.optDouble(HsWormsAttributes.V1.SENSOR_2);
-        double sensor3 = jsonObject.optDouble(HsWormsAttributes.V1.SENSOR_3);
+            long timeStamp = jsonObject.optLong(HsWormsAttributes.V1.TIMESTAMP);
+            String hwId = jsonObject.optString(HsWormsAttributes.V1.HARDWARE_ID);
 
-        long timeStamp = jsonObject.optLong(HsWormsAttributes.V1.TIMESTAMP);
-        String hwId = jsonObject.optString(HsWormsAttributes.V1.HARDWARE_ID);
+            Sensor ejectionSensor = new Sensor(SensorPurpose.EJECTION, Unit.LITER_PER_SECOND);
+            SensorData sensorData1 = new SensorData(sensor1, ejectionSensor.getUnit(), ejectionSensor);
 
-        Sensor ejectionSensor = new Sensor(SensorPurpose.EJECTION, Unit.LITER_PER_SECOND);
-        SensorData sensorData1 = new SensorData(sensor1, ejectionSensor.getUnit(), ejectionSensor);
+            Sensor injectionSensor = new Sensor(SensorPurpose.INJECTION, Unit.LITER_PER_SECOND);
+            SensorData sensorData2 = new SensorData(sensor2, injectionSensor.getUnit(), injectionSensor);
 
-        Sensor injectionSensor = new Sensor(SensorPurpose.INJECTION, Unit.LITER_PER_SECOND);
-        SensorData sensorData2 = new SensorData(sensor2, injectionSensor.getUnit(), injectionSensor);
+            Sensor returnSensor = new Sensor(SensorPurpose.RETURN, Unit.LITER_PER_SECOND);
+            SensorData sensorData3 = new SensorData(sensor3, returnSensor.getUnit(), returnSensor);
 
-        Sensor returnSensor = new Sensor(SensorPurpose.RETURN, Unit.LITER_PER_SECOND);
-        SensorData sensorData3 = new SensorData(sensor3, returnSensor.getUnit(), returnSensor);
-
-        DataPoint dataPoint = new DataPoint(timeStamp)
-                .addData(sensorData1, sensorData2, sensorData3)
-                .setHardWareId(hwId);
-
-        return dataPoint;
+            return new DataPoint(timeStamp)
+                    .addData(sensorData1, sensorData2, sensorData3)
+                    .setHardWareId(hwId);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     private DataPoint convertJsonFromV2(JSONObject jsonObject) {
-        DataPoint dataPoint = convertJsonFromV1(jsonObject);
+        try {
+            DataPoint dataPoint = convertJsonFromV1(jsonObject);
 
-        double latitude = jsonObject.optDouble(HsWormsAttributes.V2.LATITUDE);
-        double longitude = jsonObject.optDouble(HsWormsAttributes.V2.LONGITUDE);
-        Location location = new Location(longitude, latitude);
+            double latitude = jsonObject.optDouble(HsWormsAttributes.V2.LATITUDE);
+            double longitude = jsonObject.optDouble(HsWormsAttributes.V2.LONGITUDE);
+            Location location = new Location(longitude, latitude);
 
-        dataPoint.setLocation(location);
+            dataPoint.setLocation(location);
 
-        return dataPoint;
+            return dataPoint;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 }

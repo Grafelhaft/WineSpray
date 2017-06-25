@@ -63,7 +63,7 @@
     </string-array>
 
     <string name="pref_key_api_version" translatable="false">winespray_pref_key_api_version</string>
-    <string name="pref_default_api_version" translatable="false">0</string>
+    <string name="pref_default_api_version" translatable="false">1</string>
     <string-array name="pref_value_api_version" translatable="false">
         <item>0</item>
         <item>1</item>

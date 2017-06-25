@@ -11,20 +11,25 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.IBinder;
-import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
+
+import com.android.volley.Request;
+import com.android.volley.VolleyError;
+
+import org.json.JSONObject;
 
 import java.net.HttpURLConnection;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import de.grafelhaft.grafellib.async.OnTaskOutputListener;
 import de.grafelhaft.grafellib.async.http.HttpResponse;
 import de.grafelhaft.grafellib.async.http.OnConnectionResponseListener;
 import de.grafelhaft.grafellib.util.TimeUtils;
-import de.grafelhaft.winespray.api.tasks.HttpReadSensorDataAsyncTask;
+import de.grafelhaft.winespray.api.OnResponseListener;
+import de.grafelhaft.winespray.api.RequestHandler;
+import de.grafelhaft.winespray.api.json.JSONFactory;
 import de.grafelhaft.winespray.app.ActiveRunActivity;
 import de.grafelhaft.winespray.app.R;
 import de.grafelhaft.winespray.app.controller.RunController;
@@ -32,7 +37,6 @@ import de.grafelhaft.winespray.app.util.IntentUtils;
 import de.grafelhaft.winespray.model.DataPoint;
 import de.grafelhaft.winespray.model.Location;
 import de.grafelhaft.winespray.model.Run;
-import de.grafelhaft.winespray.model.SensorData;
 import de.grafelhaft.winespray.model.SensorPurpose;
 import de.grafelhaft.winespray.model.Session;
 import de.grafelhaft.winespray.model.State;
@@ -42,7 +46,7 @@ import io.realm.Realm;
 /**
  * Created by Markus on 11.09.2016.
  */
-public class DataCrawlerService extends Service implements OnTaskOutputListener<DataPoint>, OnConnectionResponseListener {
+public class DataCrawlerService extends Service implements OnConnectionResponseListener, OnResponseListener {
 
     private static final String LOG_TAG = DataCrawlerService.class.getName();
 
@@ -51,7 +55,7 @@ public class DataCrawlerService extends Service implements OnTaskOutputListener<
     private long _runId;
     private int _state;
 
-    private Timer _debugTimer;
+    private Timer _timer;
 
     @Override
     public void onCreate() {
@@ -84,6 +88,9 @@ public class DataCrawlerService extends Service implements OnTaskOutputListener<
 
                     //Start GPS service
                     GpsLocationService.getInstance().start(this);
+
+                    //Subscribe to http get request response
+                    RequestHandler.getInstance(this).addOnResponseListener(this);
 
                     //Start http-get task
                     startUpdateTask();
@@ -138,8 +145,8 @@ public class DataCrawlerService extends Service implements OnTaskOutputListener<
                     });
                 }
 
-                if (_debugTimer != null) {
-                    _debugTimer.cancel();
+                if (_timer != null) {
+                    _timer.cancel();
                 }
 
                 stopForeground(true);
@@ -213,15 +220,14 @@ public class DataCrawlerService extends Service implements OnTaskOutputListener<
 
     @Override
     public void onConnectionResponse(HttpResponse httpResponse) {
-        if ( (_state == State.ACTIVE | _state == State.PAUSED)
+        if ((_state == State.ACTIVE | _state == State.PAUSED)
                 && httpResponse.code() == HttpURLConnection.HTTP_GATEWAY_TIMEOUT) {
             Log.d(LOG_TAG, "reconnect");
             startUpdateTask();
         }
     }
 
-    @Override
-    public void onTaskOutput(final DataPoint dataPoint) {
+    public void saveDataPoint(final DataPoint dataPoint) {
         if (dataPoint != null) {
 
             final Run run = (Run) RealmHelper.findWhereId(Run.class, _runId);
@@ -262,33 +268,50 @@ public class DataCrawlerService extends Service implements OnTaskOutputListener<
     }
 
     private void startUpdateTask() {
-        if (RunController.getInstance().isDebugSession(this)) {
-            _debugTimer = new Timer();
-            _debugTimer.scheduleAtFixedRate(new TimerTask() {
-                @Override
-                public void run() {
+        _timer = new Timer();
+
+        _timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if (RunController.getInstance().isDebugSession(DataCrawlerService.this)) {
+                    Log.d(LOG_TAG, "Create dummy request");
                     new Handler(DataCrawlerService.this.getMainLooper()).post(new Runnable() {
                         @Override
                         public void run() {
-                            onTaskOutput(DataPoint.Dummy.create());
+                            saveDataPoint(DataPoint.Dummy.create());
                         }
                     });
+                } else {
+                    Log.d(LOG_TAG, "Send request");
+                    RequestHandler.getInstance(DataCrawlerService.this).get(
+                            RunController.getInstance().getApiVersion(DataCrawlerService.this),
+                            RunController.getInstance().getIpAddress(DataCrawlerService.this)
+                    );
                 }
-            }, 0, RunController.getInstance().getUpdateInterval());
-        } else {
-            HttpReadSensorDataAsyncTask task = new HttpReadSensorDataAsyncTask(
-                    this,
-                    RunController.getInstance().getApiVersion(this),
-                    RunController.getInstance().getUpdateInterval(),
-                    RunController.getInstance().getIpAddress(this)
-            );
-            task.addOnTaskOutputListener(this);
-            task.addOnConnectionResponseListener(this);
-            task.addOnConnectionResponseListener(RunController.getInstance());
-            RunController.getInstance().addOnStateChangedListener(task);
-            task.execute();
-            Log.d(LOG_TAG, "AsyncTask started");
+            }
+        }, 0, RunController.getInstance().getUpdateInterval());
+    }
+
+    @Override
+    public void onResponse(JSONObject jsonObject) {
+        if (jsonObject != null) {
+            //Convert JSON to DataPoint Object
+            DataPoint dataPoint = new JSONFactory(
+                    RunController.getInstance().getApiVersion(this)
+            ).build(jsonObject);
+
+            saveDataPoint(dataPoint);
         }
     }
 
+    @Override
+    public void onError(VolleyError error) {
+        Log.d(LOG_TAG, "Request error: " + error.toString());
+        RunController.getInstance().onError(error);
+    }
+
+    @Override
+    public void onFinish(Request<JSONObject> request) {
+        Log.d(LOG_TAG, "Finish request" + request.toString());
+    }
 }
