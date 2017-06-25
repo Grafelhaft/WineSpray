@@ -40,6 +40,12 @@ public class SessionViewHolder extends RecyclerView.ViewHolder {
         subTitle.setText(dateString);
         hint.setText(context.getString(R.string.format_run_count, session.getRuns().size()));
 
+        if (session.getRuns().size() <= 0) {
+            hint.setBackgroundResource(R.color.orange_light);
+        } else {
+            hint.setBackgroundResource(R.color.transparent);
+        }
+
         image.setImageResource(ResourceUtils.getVineyardRes(session.getId()));
     }
 }

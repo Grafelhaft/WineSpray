@@ -125,6 +125,17 @@ public class SessionDetailActivity extends BaseActivity implements View.OnClickL
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.container, SessionDetailFragment.create(_session))
                     .commit();
+        } else {
+            Realm.getDefaultInstance().executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    _session = new Session();
+                    RealmHelper.setAutoId(_session, Session.class);
+                    _session.setName(getString(R.string.session));
+                    _session.setStartTime(System.currentTimeMillis());
+                    _session = realm.copyToRealmOrUpdate(_session);
+                }
+            });
         }
     }
 

@@ -113,7 +113,7 @@ public class MainActivity extends BaseActivity implements SpaceOnClickListener, 
 
     @Override
     public void onCentreButtonClick() {
-        startActivity(new Intent(this, ActiveSessionActivity.class));
+        //startActivity(new Intent(this, ActiveSessionActivity.class));
     }
 
     @Override

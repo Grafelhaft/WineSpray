@@ -15,6 +15,7 @@ import de.grafelhaft.winespray.model.Session;
 import de.grafelhaft.winespray.model.realm.RealmHelper;
 import io.realm.Realm;
 
+@Deprecated
 public class ActiveSessionActivity extends BaseActivity implements View.OnClickListener {
 
     private static final int REQUEST_SESSION_ACTIVE = 100;

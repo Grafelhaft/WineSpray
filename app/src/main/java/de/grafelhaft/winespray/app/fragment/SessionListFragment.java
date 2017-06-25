@@ -9,14 +9,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
-
 import de.grafelhaft.grafellib.adapter.OnRecyclerViewItemClickListener;
+import de.grafelhaft.grafellib.adapter.OnRecyclerViewItemLongClickListener;
 import de.grafelhaft.grafellib.fragment.BaseFragment;
-import de.grafelhaft.winespray.app.ActiveSessionActivity;
 import de.grafelhaft.winespray.app.R;
 import de.grafelhaft.winespray.app.SessionDetailActivity;
 import de.grafelhaft.winespray.app.adapter.realm.SessionRealmRecyclerViewAdapter;
+import de.grafelhaft.winespray.app.dialog.DeleteRealmObjectDialog;
 import de.grafelhaft.winespray.app.util.IntentUtils;
 import de.grafelhaft.winespray.model.Session;
 import io.realm.Realm;
@@ -26,7 +25,7 @@ import io.realm.Sort;
 /**
  * Created by Markus on 14.09.2016.
  */
-public class SessionListFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, OnRecyclerViewItemClickListener {
+public class SessionListFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, OnRecyclerViewItemClickListener, OnRecyclerViewItemLongClickListener {
 
     private RecyclerView _recyclerView;
     private SwipeRefreshLayout _refreshLayout;
@@ -41,6 +40,7 @@ public class SessionListFragment extends BaseFragment implements SwipeRefreshLay
     protected void init(Bundle bundle) {
         _adapter = new SessionRealmRecyclerViewAdapter(getActivity(), getData(), true);
         _adapter.setOnRecyclerViewItemClickListener(this);
+        _adapter.setOnRecyclerViewItemLongClickListener(this);
 
         _refreshLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
         _refreshLayout.setOnRefreshListener(this);
@@ -61,7 +61,7 @@ public class SessionListFragment extends BaseFragment implements SwipeRefreshLay
         findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ActiveSessionActivity.class);
+                Intent intent = new Intent(getActivity(), SessionDetailActivity.class);
 
                 View shared = findViewById(R.id.fab);
                 String name = getString(R.string.transition_fab);
@@ -94,5 +94,12 @@ public class SessionListFragment extends BaseFragment implements SwipeRefreshLay
         //ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), image);
 
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onItemLongClicked(View view, int i) {
+        DeleteRealmObjectDialog dialog = DeleteRealmObjectDialog.create(_adapter.getData().get(i));
+        dialog.show(getActivity().getSupportFragmentManager(), "DELETE_DIALOG");
+        return true;
     }
 }

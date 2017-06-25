@@ -38,5 +38,11 @@ public class SessionRealmRecyclerViewAdapter extends ARealmRecyclerViewAdapter<S
                 notifyItemClicked(v, holder.getAdapterPosition());
             }
         });
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                return notifyItemLongClicked(view, holder.getAdapterPosition());
+            }
+        });
     }
 }
