@@ -73,7 +73,7 @@ public class ActiveRunFragment extends BaseFragment implements View.OnClickListe
 
             }
 
-            ((TextView) findViewById(R.id.text_volume_injection)).setText(MathUtils.format2Decimals(injected));
+            ((TextView) findViewById(R.id.text_volume_injection)).setText(Integer.toString((int) injected));
 
             ((TextView) findViewById(R.id.text_recycling_percent)).setText(MathUtils.formatDecimalToPercent(rate));
 
