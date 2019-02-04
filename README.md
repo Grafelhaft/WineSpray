@@ -5,7 +5,6 @@
 ## Contact 
 
 - **Email**: grafelhaft@outlook.de
-- **Twitter**: https://twitter.com/grafelhaft
 
 ## License
 
